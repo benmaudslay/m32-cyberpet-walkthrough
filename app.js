@@ -12,6 +12,8 @@ const init = async () => {
 
   if (response.type === "Siberian Tiger") {
     myPet = new siberianTiger(response.name)
+    // tigerGameLoop()
+    // gameLoop([specific questions])
   } else if (response.type === "Red Panda") {
     myPet = new redPanda(response.name)
   } else {
@@ -27,7 +29,13 @@ const init = async () => {
 
 const gameLoop = async () => {
   try {
+    if (myPet.health >= 150) {
+      console.log("Game Over")
+      return
+    }
+
     myPet.time()
+
     let response = await inquirer.prompt(gameQuestion)
 
     if (response.action === "drink") {
